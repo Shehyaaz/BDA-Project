@@ -1,3 +1,0 @@
-install pymongo
-install panda
-install matplot
