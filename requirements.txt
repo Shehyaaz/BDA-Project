@@ -1,3 +1,4 @@
 pymongo
-panda
+pandas
 matplotlib
+PyQt5
