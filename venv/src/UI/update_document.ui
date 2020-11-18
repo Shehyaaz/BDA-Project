@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>640</width>
+    <height>480</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Update Document</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../resources/icon.png</normaloff>../resources/icon.png</iconset>
+  </property>
+  <property name="modal">
+   <bool>true</bool>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QGroupBox" name="groupBox_2">
+       <property name="title">
+        <string>Search</string>
+       </property>
+       <layout class="QFormLayout" name="formLayout">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_14">
+          <property name="text">
+           <string>App Name</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="app_search">
+          <property name="toolTip">
+           <string>Enter app name</string>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">margin : 0 5 px;</string>
+          </property>
+          <property name="clearButtonEnabled">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_15">
+          <property name="text">
+           <string>Category</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="category_search">
+          <property name="toolTip">
+           <string>Enter category</string>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">margin : 0 5 px;</string>
+          </property>
+          <property name="placeholderText">
+           <string>eg: Education, Personal</string>
+          </property>
+          <property name="clearButtonEnabled">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="1">
+      <widget class="QGroupBox" name="groupBox">
+       <property name="title">
+        <string>Update information</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout" stretch="0,1">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>App Name</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="app">
+            <property name="toolTip">
+             <string>Enter app name</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">margin : 0 5 px;</string>
+            </property>
+            <property name="clearButtonEnabled">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QGridLayout" name="gridLayout_3">
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_7">
+            <property name="text">
+             <string>Type</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLineEdit" name="size">
+            <property name="toolTip">
+             <string>Enter app size in MB</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">margin : 0 5 px;</string>
+            </property>
+            <property name="placeholderText">
+             <string>in MB</string>
+            </property>
+            <property name="clearButtonEnabled">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="label_10">
+            <property name="text">
+             <string>Genre</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QLineEdit" name="current_version">
+            <property name="toolTip">
+             <string>Enter current version of app</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">margin : 0 5 px;</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_9">
+            <property name="text">
+             <string>Content Rating</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>Rating</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QComboBox" name="type">
+            <property name="toolTip">
+             <string>Enter type of app</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">margin : 0 5 px;</string>
+            </property>
+            <item>
+             <property name="text">
+              <string>Free</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Paid</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="label_12">
+            <property name="text">
+             <string>Current Version</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="3">
+           <widget class="QLineEdit" name="price">
+            <property name="toolTip">
+             <string>Enter price of app in $</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">margin : 0 5 px;</string>
+            </property>
+            <property name="placeholderText">
+             <string>0 is free, else price in $</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>Category</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="2">
+           <widget class="QLabel" name="label_8">
+            <property name="text">
+             <string>Price in $</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="3">
+           <widget class="QLineEdit" name="reviews">
+            <property name="toolTip">
+             <string>Enter number of reviews</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">margin : 0 5 px;</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="clearButtonEnabled">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="2">
+           <widget class="QLabel" name="label_11">
+            <property name="text">
+             <string>Last Updated</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QDoubleSpinBox" name="rating">
+            <property name="toolTip">
+             <string>Enter app rating</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">margin : 0 5 px;</string>
+            </property>
+            <property name="decimals">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <double>5.000000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>0.100000000000000</double>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QLabel" name="label_4">
+            <property name="text">
+             <string>Reviews</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QLineEdit" name="genres">
+            <property name="toolTip">
+             <string>Enter app genre</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">margin : 0 5 px;</string>
+            </property>
+            <property name="placeholderText">
+             <string>eg : Arcade, Creativity</string>
+            </property>
+            <property name="clearButtonEnabled">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <widget class="QLabel" name="label_6">
+            <property name="text">
+             <string>Installs</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="2">
+           <widget class="QLabel" name="label_13">
+            <property name="text">
+             <string>Android version</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="category">
+            <property name="toolTip">
+             <string>Enter category</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">margin : 0 5 px;</string>
+            </property>
+            <property name="placeholderText">
+             <string>eg: Education, Personal</string>
+            </property>
+            <property name="clearButtonEnabled">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="3">
+           <widget class="QLineEdit" name="installs">
+            <property name="toolTip">
+             <string>Enter number of installs</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">margin : 0 5 px;</string>
+            </property>
+            <property name="placeholderText">
+             <string>eg: 100+, 500+</string>
+            </property>
+            <property name="clearButtonEnabled">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="3">
+           <widget class="QDateEdit" name="last_updated">
+            <property name="toolTip">
+             <string>Enter last update date</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">margin : 0 5 px;</string>
+            </property>
+            <property name="currentSection">
+             <enum>QDateTimeEdit::DaySection</enum>
+            </property>
+            <property name="calendarPopup">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="3">
+           <widget class="QLineEdit" name="android_version">
+            <property name="toolTip">
+             <string>Enter minimum android version required</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">margin : 0 5 px;</string>
+            </property>
+            <property name="placeholderText">
+             <string>eg: 1.0.0 and up</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_5">
+            <property name="text">
+             <string>Size in MB</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QComboBox" name="content_rating">
+            <property name="toolTip">
+             <string>Enter content rating of app</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">margin : 0 5 px;</string>
+            </property>
+            <item>
+             <property name="text">
+              <string>Everyone</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Teen</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Mature 17+</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Adult 18+</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Save</set>
+     </property>
+     <property name="centerButtons">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>Dialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>254</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>Dialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>316</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
