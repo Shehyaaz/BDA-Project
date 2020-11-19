@@ -57,13 +57,3 @@ class Ui_Dialog(object):
         self.groupBox.setTitle(_translate("Dialog", "Search"))
         self.label.setText(_translate("Dialog", "App Name"))
         self.label_2.setText(_translate("Dialog", "Category"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Dialog = QtWidgets.QDialog()
-    ui = Ui_Dialog()
-    ui.setupUi(Dialog)
-    Dialog.show()
-    sys.exit(app.exec_())

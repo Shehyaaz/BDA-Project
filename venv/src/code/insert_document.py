@@ -199,13 +199,3 @@ class Ui_Dialog(object):
         self.content_rating.setItemText(1, _translate("Dialog", "Teen"))
         self.content_rating.setItemText(2, _translate("Dialog", "Mature 17+"))
         self.content_rating.setItemText(3, _translate("Dialog", "Adult 18+"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Dialog = QtWidgets.QDialog()
-    ui = Ui_Dialog()
-    ui.setupUi(Dialog)
-    Dialog.show()
-    sys.exit(app.exec_())
