@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
-    <height>200</height>
+    <width>611</width>
+    <height>400</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,6 +16,9 @@
   <property name="windowIcon">
    <iconset>
     <normaloff>../resources/icon.png</normaloff>../resources/icon.png</iconset>
+  </property>
+  <property name="modal">
+   <bool>true</bool>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -127,6 +130,248 @@
          </layout>
         </item>
         <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_7">
+          <item>
+           <widget class="QLabel" name="label_12">
+            <property name="text">
+             <string>Reviews</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="reviews_low">
+            <property name="toolTip">
+             <string>Enter app name</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">margin : 0 5 px;</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_13">
+            <property name="text">
+             <string>to</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="reviews_high">
+            <property name="toolTip">
+             <string>Enter app category</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">margin : 0 5 px;</string>
+            </property>
+            <property name="placeholderText">
+             <string/>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_8">
+          <item>
+           <widget class="QLabel" name="label_14">
+            <property name="text">
+             <string>Size</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="size_low">
+            <property name="toolTip">
+             <string>Enter app name</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">margin : 0 5 px;</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_15">
+            <property name="text">
+             <string>to</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="size_high">
+            <property name="toolTip">
+             <string>Enter app category</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">margin : 0 5 px;</string>
+            </property>
+            <property name="placeholderText">
+             <string/>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_9">
+          <item>
+           <widget class="QLabel" name="label_16">
+            <property name="text">
+             <string>Installs</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="installs_low">
+            <property name="toolTip">
+             <string>Enter app name</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">margin : 0 5 px;</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_17">
+            <property name="text">
+             <string>to</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="installs_high">
+            <property name="toolTip">
+             <string>Enter app category</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">margin : 0 5 px;</string>
+            </property>
+            <property name="placeholderText">
+             <string/>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_10">
+          <item>
+           <widget class="QLabel" name="label_18">
+            <property name="text">
+             <string>Price</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="price_low">
+            <property name="toolTip">
+             <string>Enter app name</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">margin : 0 5 px;</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_19">
+            <property name="text">
+             <string>to</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="price_high">
+            <property name="toolTip">
+             <string>Enter app category</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">margin : 0 5 px;</string>
+            </property>
+            <property name="placeholderText">
+             <string/>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_11">
+          <item>
+           <widget class="QLabel" name="label_20">
+            <property name="text">
+             <string>Type</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="type">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">margin : 0 5 px;</string>
+            </property>
+            <item>
+             <property name="text">
+              <string>None</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Free</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Paid</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_21">
+            <property name="text">
+             <string>Content Rating</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="content_rating">
+            <property name="styleSheet">
+             <string notr="true">margin: 0 5 px;</string>
+            </property>
+            <item>
+             <property name="text">
+              <string>None</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Everyone</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Adults only 18+</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Mature 17+</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Teen</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
          <layout class="QHBoxLayout" name="horizontalLayout_3">
           <item>
            <widget class="QLabel" name="label_5">
@@ -148,6 +393,20 @@
             </property>
             <property name="placeholderText">
              <string>eg: Creativity</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_22">
+            <property name="text">
+             <string>Android Version</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="android_ver">
+            <property name="styleSheet">
+             <string notr="true">margin : 0 5 px;</string>
             </property>
            </widget>
           </item>
@@ -180,6 +439,16 @@
            </item>
            <item>
             <property name="text">
+             <string>Content Rating</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Genre</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
              <string>Installs</string>
             </property>
            </item>
@@ -196,6 +465,11 @@
            <item>
             <property name="text">
              <string>Price</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Type</string>
             </property>
            </item>
            <item>
