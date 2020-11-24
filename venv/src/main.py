@@ -5,14 +5,19 @@ import sys
 import subprocess
 import re
 from datetime import datetime
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
+import matplotlib.pyplot as plt
 # user-defined module imports
 from main_window import Ui_MainWindow
 from insert_document import Insert_Document_Dialog
 from delete_document import Delete_Document_Dialog
 from update_document import Update_Document_Dialog
 from adv_search import Adv_Search_Dialog
+from recommended_apps import Recommended_Apps_Dialog
 from mongo_db import Mongo_db
 from data_model import DataModel
+from graph import *
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):
@@ -24,6 +29,21 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def setupMainWindow(self):
         # create UI
         self.setupUi(self)
+
+        # a figure instance to plot on
+        self.figure = plt.figure()
+        # this is the Canvas Widget that displays the 'figure'it takes the 'figure' instance as a parameter to __init__
+        self.canvas = FigureCanvas(self.figure)
+        # this is the Navigation widget it takes the Canvas widget and a parent
+        self.toolbar = NavigationToolbar(self.canvas, self)
+        # creating a Vertical Box layout
+        self.plot_layout = QVBoxLayout()
+        # adding tool bar to the layout
+        self.plot_layout.addWidget(self.toolbar)
+        # adding canvas to the layout
+        self.plot_layout.addWidget(self.canvas)
+        self.plot.setLayout(self.plot_layout)
+
         # connect controllers to menu items
         # File menu items
         self.actionImport_dataset.triggered.connect(self.importDataset)
@@ -41,7 +61,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.search.pressed.connect(self.searchData)
         self.adv_search.pressed.connect(self.advSearchData)
         # Tab2
-        self.prediction.pressed.connect(self.predictRating)
+        self.recommended.pressed.connect(self.getRecommendations)
         self.graphs.currentIndexChanged.connect(self.displayGraph)
 
     def importDataset(self):
@@ -118,11 +138,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     temp["Price"])
                 if temp["Last Updated"]:
                     date_obj = datetime.strptime(
-                        temp["Last Updated"], "%d/%m/%Y")
+                        temp["Last Updated"], "%d/%m/%y")
                     temp["Last Updated"] = date_obj.strftime("%d %B, %Y")
 
                 insert_val = {k: v for k, v in temp.items() if v != ""}
-                print(insert_val)
+                # print(insert_val)
 
                 if self.mongo_obj.insertDocument(insert_val) is None:
                     self.alert("error", "Document Not Inserted",
@@ -146,10 +166,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                                "Please enter search criteria")
                     return 0
                 query = {}
-                if app != "":
-                    query["App"] = {"$regex": app}
-                if category != "":
-                    query["Category"] = {"$regex": category}
+                if app:
+                    query["App"] = {"$regex": app, "$options": "i"}
+                if category:
+                    category = category.replace(" ", "_").upper()
+                    query["Category"] = {"$regex": category, "$options": "i"}
 
                 temp = {}
                 temp["App"] = dlg.app.text()
@@ -181,12 +202,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     temp["Price"])
                 if temp["Last Updated"]:
                     date_obj = datetime.strptime(
-                        temp["Last Updated"], "%d/%m/%Y")
+                        temp["Last Updated"], "%d/%m/%y")
                     temp["Last Updated"] = date_obj.strftime("%d %B, %Y")
 
                 update_val = {k: v for k, v in temp.items() if v != ""}
-                print(query)
-                print(update_val)
+                # print(query)
+                # print(update_val)
                 multiple = False
                 if update_options == "Update All":
                     multiple = True
@@ -215,10 +236,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 return 0
             query = {}
             if app:
-                query["App"] = {"$regex": app}
+                query["App"] = {"$regex": app, "$options": "i"}
             if category:
-                query["Category"] = {"$regex": category}
-            print(query)
+                category = category.replace(" ", "_").upper()
+                query["Category"] = {"$regex": category, "$options": "i"}
+            # print(query)
             multiple = False
             if delete_options == "Delete All":
                 multiple = True
@@ -228,7 +250,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                            "Delete was not successful :(")
             else:
                 self.alert("success", "Delete Successful",
-                           str(res)+" document(s) was updated :)")
+                           str(res)+" document(s) was deleted :)")
 
     def deleteCollection(self):
         if self.mongo_obj.deleteCollection():
@@ -240,6 +262,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def loadData(self):
         # loads the data from mongodb in the table view
+        self.search_text.clear()
         try:
             self.model = DataModel(self.mongo_obj.searchData({}, {"_id": 0}))
             self.proxyModel = QSortFilterProxyModel(self)
@@ -252,16 +275,19 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # shows data which matches the text pattern
         text = self.search_text.text()
         if not text:
+            self.search_text.clear()
             return 0
-        if self.proxyModel is None:
+        if not hasattr(self, 'proxyModel'):
+            self.search_text.clear()
             self.alert("error", "Error", "Please load the data first !")
             return 0
-        self.proxyModel.setFilterRegExp(str(text))
-        self.proxyModel.setFilterKeyColumn(-1)  # search across all columns
+        self.proxyModel.setFilterRegExp("^"+str(text))
+        self.proxyModel.setFilterKeyColumn(0)  # search across all columns
 
     def advSearchData(self):
         # open form dialog
         dlg = Adv_Search_Dialog(self)
+        self.search_text.clear()
         if dlg.exec_():
             app = dlg.app.text()
             category = dlg.category.text()
@@ -290,9 +316,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                                "Please enter some values !")
                     return 0
                 if app:
-                    query["App"] = {"$regex": app}
+                    query["App"] = {"$regex": app, "$options": "i"}
                 if category:
-                    query["Category"] = {"$regex": category}
+                    category = category.replace(" ", "_").upper()
+                    query["Category"] = {"$regex": category, "$options": "i"}
                 if rating_low != 0.0 or rating_high != 0.0:
                     query["Rating"] = {"$gte": rating_low}
                     if rating_high != 0.0:
@@ -329,11 +356,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 if content_rating != "None":
                     query["Content Rating"] = content_rating
                 if genre:
-                    query["Genre"] = {"$regex": genre}
+                    query["Genre"] = {"$regex": genre, "$options": "i"}
                 if android_ver:
-                    query["Android Ver"] = {"$regex": "^"+android_ver}
+                    query["Android Ver"] = {
+                        "$regex": "^"+android_ver, "$options": "i"}
 
-                print(query)
+                # print(query)
                 res = None
                 if sort_field == "None":
                     res = self.mongo_obj.searchData(query, {"_id": 0})
@@ -351,10 +379,61 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.alert("error", "Search Failed", str(e))
 
     def displayGraph(self):
-        pass
+        ''' to display graphs '''
+        try:
+            collection = self.mongo_obj.getCollection()
+            text = self.graphs.currentText()
+            if text == "None":
+                plt.clf()
+            elif text == "Distribution of apps - bar graph":  # 1
+                barGraphNumApps(collection)
+            elif text == "Distribution of free and paid apps":  # 2
+                pieChartFreePaidApps(collection)
+            elif text == "Distribution of content rating":  # 3
+                pieChartContentRating(collection)
+            elif text == "Distribution of Android versions":  # 4
+                barGraphAndroidVer(collection)
+            elif text == "Histogram of App Ratings":
+                ratingHistogram(collection, self.figure)
+            elif text == "Boxplot of Installs":
+                boxPlotInstall(collection, self.figure)
+            elif text == "Rating vs Size":
+                scatterPlotRatingSize(collection)
 
-    def predictRating(self):
-        pass
+            self.canvas.draw()
+        except Exception as e:
+            self.alert("error", "Error", str(e))
+
+    def getRecommendations(self):
+        ''' Use demographic filtering to get recommended apps '''
+        try:
+            # mongodb query
+            x = list(self.mongo_obj.getCollection().aggregate(
+                [{"$match": {"Rating": {"$gt": 0}}}, {"$group": {"_id": "_id", "AverageRating": {"$avg": "$Rating"}}}]))
+            data = self.mongo_obj.searchData(
+                {}, {"_id": 0, "App": 1, "Category": 1, "Rating": 1, "Reviews": 1})
+            data.dropna(inplace=True)
+
+            # determine the score of all apps
+            C = x[0]["AverageRating"]  # C - average rating for all apps
+            # minimum number of reviews required
+            m = data["Reviews"].quantile(0.9)
+            filter_data = data.copy().loc[data["Reviews"] >= m]
+            filter_data['Score'] = self.weighted_rating(filter_data, m, C)
+            filter_data = filter_data.sort_values('Score', ascending=False)
+
+            # display results
+            dlg = Recommended_Apps_Dialog(self)
+            dlg.tableView.setModel(DataModel(filter_data.head(n=20)))
+            dlg.show()
+        except Exception as e:
+            self.alert("error", "Error", str(e))
+
+    def weighted_rating(self, df, m, C):
+        v = df['Reviews']
+        R = df['Rating']
+        # Calculation based on the IMDB formula
+        return (v/(v+m) * R) + (m/(m+v) * C)
 
     def alert(self, type, title, text=None):
         msg = QMessageBox(self)
@@ -370,10 +449,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
 
 if __name__ == "__main__":
-    # try:
     app = QApplication(sys.argv)
     mainWindow = MainWindow()
     mainWindow.show()
-    sys.exit(app.exec_())
-    # except Exception:
-    #    print("Something unexpected has occurred :(")
+    try:
+        sys.exit(app.exec_())
+    except Exception as e:
+        mainWindow.alert("error", "Error", str(e))

@@ -9,6 +9,9 @@ class Mongo_db:
         self.mydb = self.mongoClient["bda-project"]  # database name
         self.mycol = self.mydb["googleplaystore"]  # collection name
 
+    def getCollection(self):
+        return self.mycol
+
     def insertDocument(self, doc):
         try:
             res = self.mycol.insert_one(doc)
@@ -27,7 +30,8 @@ class Mongo_db:
 
     def deleteDocument(self, query, multiple=False):
         try:
-            res = self.mycol.delete_one(query) if not multiple else self.mycol.delete_many(query)
+            res = self.mycol.delete_one(
+                query) if not multiple else self.mycol.delete_many(query)
             return res.deleted_count
         except Exception:
             return None

@@ -112,10 +112,13 @@ class Ui_MainWindow(object):
         self.graphs.addItem("")
         self.graphs.addItem("")
         self.graphs.addItem("")
+        self.graphs.addItem("")
+        self.graphs.addItem("")
+        self.graphs.addItem("")
         self.horizontalLayout_3.addWidget(self.graphs)
-        self.prediction = QtWidgets.QPushButton(self.tab_2)
-        self.prediction.setObjectName("prediction")
-        self.horizontalLayout_3.addWidget(self.prediction)
+        self.recommended = QtWidgets.QPushButton(self.tab_2)
+        self.recommended.setObjectName("recommended")
+        self.horizontalLayout_3.addWidget(self.recommended)
         self.gridLayout_5.addLayout(self.horizontalLayout_3, 0, 0, 1, 1)
         self.plot = QtWidgets.QWidget(self.tab_2)
         sizePolicy = QtWidgets.QSizePolicy(
@@ -184,7 +187,7 @@ class Ui_MainWindow(object):
         self.search_text.setToolTip(_translate(
             "MainWindow", "Enter search text"))
         self.search_text.setPlaceholderText(
-            _translate("MainWindow", "Search text"))
+            _translate("MainWindow", "Search App Name"))
         self.search.setText(_translate("MainWindow", "Search"))
         self.adv_search.setText(_translate("MainWindow", "Advanced Search"))
         self.tabWidget.setTabText(
@@ -192,10 +195,10 @@ class Ui_MainWindow(object):
         )
         self.label.setText(_translate("MainWindow", "Choose an option :"))
         self.graphs.setItemText(
-            0, _translate("MainWindow", "Distribution of apps - bar graph")
+            0, _translate("MainWindow", "None")
         )
         self.graphs.setItemText(
-            1, _translate("MainWindow", "Distribution of apps - pie chart")
+            1, _translate("MainWindow", "Distribution of apps - bar graph")
         )
         self.graphs.setItemText(
             2, _translate("MainWindow", "Distribution of free and paid apps")
@@ -206,7 +209,16 @@ class Ui_MainWindow(object):
         self.graphs.setItemText(
             4, _translate("MainWindow", "Distribution of Android versions")
         )
-        self.prediction.setText(_translate("MainWindow", "Predict Rating"))
+        self.graphs.setItemText(
+            5, _translate("MainWindow", "Histogram of App Ratings")
+        )
+        self.graphs.setItemText(
+            6, _translate("MainWindow", "Boxplot of Installs")
+        )
+        self.graphs.setItemText(
+            7, _translate("MainWindow", "Rating vs Size")
+        )
+        self.recommended.setText(_translate("MainWindow", "Recommended Apps"))
         self.tabWidget.setTabText(
             self.tabWidget.indexOf(self.tab_2), _translate(
                 "MainWindow", "Analysis")
