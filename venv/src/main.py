@@ -190,7 +190,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 # checking the values
                 temp["Category"] = temp["Category"].replace(
                     " ", "_").upper()
-                temp["Reviews"] = 0 if not temp["Reviews"] else int(
+                temp["Reviews"] = "" if not temp["Reviews"] else int(
+                    temp["Reviews"])
+                temp["Rating"] = "" if not temp["Rating"] else float(
                     temp["Reviews"])
                 if temp["Size"]:
                     temp["Size"] = re.findall(r'\d+\.?', temp["Size"])[0] + "M"
