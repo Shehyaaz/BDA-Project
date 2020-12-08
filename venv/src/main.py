@@ -137,8 +137,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 temp["Price"] = 0.0 if temp["Type"] == "Free" else float(
                     temp["Price"])
                 if temp["Last Updated"]:
+                    if temp["Last Updated"][-5] == "/":
+                        date_format = "%d/%m/%Y"
+                    else:
+                        date_format = "%d/%m/%y"
                     date_obj = datetime.strptime(
-                        temp["Last Updated"], "%d/%m/%y")
+                        temp["Last Updated"], date_format)
                     temp["Last Updated"] = date_obj.strftime("%d %B, %Y")
 
                 insert_val = {k: v for k, v in temp.items() if v != ""}
@@ -203,8 +207,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 temp["Price"] = 0.0 if temp["Type"] == "Free" else float(
                     temp["Price"])
                 if temp["Last Updated"]:
+                    if temp["Last Updated"][-5] == "/":
+                        date_format = "%d/%m/%Y"
+                    else:
+                        date_format = "%d/%m/%y"
                     date_obj = datetime.strptime(
-                        temp["Last Updated"], "%d/%m/%y")
+                        temp["Last Updated"], date_format)
                     temp["Last Updated"] = date_obj.strftime("%d %B, %Y")
 
                 update_val = {k: v for k, v in temp.items() if v != ""}
